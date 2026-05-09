@@ -2544,7 +2544,7 @@
       </div>
 
       <!-- WhatsApp CTA Button -->
-      <a href="https://wa.me/5565936180842" class="cta-btn" target="_blank" rel="noopener"
+      <a id="botao-zap" href="https://wa.me/5565936180842" class="cta-btn" target="_blank" rel="noopener"
         aria-label="Quero meu app personalizado agora">
         <svg class="wha-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
           <path
@@ -2573,6 +2573,14 @@
   </main>
 
 
+  <script>
+    var botaoWhatsApp = document.getElementById('botao-zap');
+    if(botaoWhatsApp) {
+      botaoWhatsApp.addEventListener('click', function() {
+        fbq('track', 'Contact');
+      });
+    }
+  </script>
 </body>
 
 </html>
