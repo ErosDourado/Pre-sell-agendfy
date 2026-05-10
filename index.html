@@ -1633,117 +1633,67 @@
       }
     }
 
-    /* CTA WhatsApp button */
+    /* ---- CTA WhatsApp button (novo, do zero) ---- */
     .cta-btn {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 0;
+      display: grid;
+      place-items: center;
       width: 100%;
       max-width: 420px;
       margin: 0 auto 20px;
-      padding: 20px 24px;
+      padding: 22px 28px;
       background: linear-gradient(145deg, #25D366, #1EBE5A);
       color: #fff;
       border: none;
       border-radius: 18px;
       cursor: pointer;
       text-decoration: none;
-      box-shadow:
-        0 8px 24px -6px rgba(37, 211, 102, .45),
-        0 4px 12px -2px rgba(37, 211, 102, .25),
-        inset 0 1px 0 rgba(255, 255, 255, .2);
       position: relative;
       overflow: hidden;
-      transition: transform 200ms ease, box-shadow 200ms ease;
-      animation: pulse 2.4s cubic-bezier(.4, 0, .6, 1) infinite;
+      transition: box-shadow 200ms ease;
+      animation: wpp-pulse 2.4s ease-in-out infinite;
     }
 
-    .cta-btn::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(255, 255, 255, .12) 0%, transparent 50%);
-      pointer-events: none;
-      border-radius: 18px;
-    }
-
-    .cta-btn::after {
-      content: "";
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(255, 255, 255, .15), transparent 60%);
-      opacity: 0;
-      transition: opacity 300ms;
-      pointer-events: none;
-    }
-
-    .cta-btn:hover {
-      box-shadow:
-        0 14px 36px -8px rgba(37, 211, 102, .55),
-        0 6px 16px -4px rgba(37, 211, 102, .3),
-        inset 0 1px 0 rgba(255, 255, 255, .25);
-    }
-
-    .cta-btn:hover::after {
-      opacity: 1;
-    }
-
-    .cta-btn:active {
-      transform: scale(.98);
-    }
-
-    @keyframes pulse {
+    @keyframes wpp-pulse {
       0%, 100% {
-        box-shadow: 0 8px 24px -6px rgba(37, 211, 102, .5), 0 4px 12px -2px rgba(37, 211, 102, .3), 0 0 0 0 rgba(37, 211, 102, .55);
+        box-shadow: 0 8px 24px -6px rgba(37,211,102,.45), 0 0 0 0 rgba(37,211,102,.5);
         transform: scale(1);
       }
       50% {
-        box-shadow: 0 8px 24px -6px rgba(37, 211, 102, .5), 0 4px 12px -2px rgba(37, 211, 102, .3), 0 0 0 18px rgba(37, 211, 102, 0);
-        transform: scale(1.025);
+        box-shadow: 0 8px 24px -6px rgba(37,211,102,.45), 0 0 0 16px rgba(37,211,102,0);
+        transform: scale(1.022);
       }
     }
 
-    .wha-icon {
-      width: 32px;
-      height: 32px;
-      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, .15));
+    .cta-btn:active {
+      transform: scale(.97);
     }
 
-    .btn-label {
+    .cta-btn-inner {
       display: flex;
       flex-direction: column;
-      gap: 4px;
-      text-align: center;
       align-items: center;
       justify-content: center;
-      width: 100%;
-      margin: 0 auto;
+      gap: 4px;
+      text-align: center;
+      pointer-events: none;
     }
 
-    .btn-label .main {
-      display: block;
-      width: 100%;
-      text-align: center;
+    .cta-btn-inner .btn-main {
       font-size: 14px;
       font-weight: 700;
-      letter-spacing: 0.03em;
+      letter-spacing: 0.04em;
       line-height: 1.2;
-      text-shadow: 0 1px 3px rgba(0, 0, 0, .12);
+      color: #fff;
+      text-align: center;
     }
 
-    .btn-label .sub {
-      display: block;
-      width: 100%;
-      text-align: center;
+    .cta-btn-inner .btn-sub {
       font-size: 11px;
       font-weight: 400;
-      opacity: .85;
+      opacity: .88;
       letter-spacing: 0.02em;
+      color: #fff;
+      text-align: center;
     }
 
     /* note below button */
@@ -2566,9 +2516,9 @@
       <!-- WhatsApp CTA Button -->
       <a id="botao-zap" href="https://wa.me/5565936180842" class="cta-btn" target="_blank" rel="noopener"
         aria-label="Quero meu app personalizado agora">
-        <div class="btn-label">
-          <span class="main">QUERO MEU APP PERSONALIZADO AGORA</span>
-          <span class="sub">Consultoria gratuita no WhatsApp</span>
+        <div class="cta-btn-inner">
+          <span class="btn-main">QUERO MEU APP PERSONALIZADO AGORA</span>
+          <span class="btn-sub">Consultoria gratuita no WhatsApp</span>
         </div>
       </a>
 
