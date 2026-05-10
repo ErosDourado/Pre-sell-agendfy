@@ -1659,6 +1659,21 @@
       animation: arrow-fall 2s ease-in-out infinite;
     }
 
+    .arrow-cta svg path {
+      opacity: 0;
+      animation: chev-seq 1.8s ease-in-out infinite;
+    }
+    .arrow-cta svg path:nth-child(1) { animation-delay: 0s; }
+    .arrow-cta svg path:nth-child(2) { animation-delay: 0.25s; }
+    .arrow-cta svg path:nth-child(3) { animation-delay: 0.5s; }
+
+    @keyframes chev-seq {
+      0%   { opacity: 0; }
+      30%  { opacity: 1; }
+      70%  { opacity: 1; }
+      100% { opacity: 0; }
+    }
+
     @keyframes arrow-fall {
       0%   { opacity: 0; transform: translateY(-10px); }
       25%  { opacity: 1; }
@@ -2544,13 +2559,10 @@
       </div>
 
       <div class="arrow-cta" aria-hidden="true">
-        <svg width="36" height="56" viewBox="0 0 36 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- Haste curva estilo caligráfico -->
-          <path d="M18 2 C19 10 20 20 18 34 C17 40 15 46 14 50"
-                stroke="#5C3D24" stroke-width="1.2" stroke-linecap="round" fill="none"/>
-          <!-- Ponta elegante -->
-          <path d="M7 43 C9 50 14 54 14 50 C14 54 19 56 24 48"
-                stroke="#5C3D24" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <svg width="38" height="48" viewBox="0 0 38 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 4 L19 16 L34 4"  stroke="#5C3D24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M4 18 L19 30 L34 18" stroke="#5C3D24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M4 32 L19 44 L34 32" stroke="#5C3D24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </div>
 
