@@ -2089,6 +2089,33 @@
       50%       { transform: translateY(-10px); }
     }
 
+    .mockup-wrap {
+      width: 100%;
+      max-width: 560px;
+      margin: 0 auto 36px;
+      position: relative;
+      padding-bottom: 18px;
+    }
+
+    .mockup-wrap::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 68%;
+      height: 22px;
+      background: radial-gradient(ellipse at center, rgba(50,30,15,.32) 0%, transparent 72%);
+      border-radius: 50%;
+      filter: blur(6px);
+      animation: shadow-breathe 4s ease-in-out infinite;
+    }
+
+    @keyframes shadow-breathe {
+      0%, 100% { transform: translateX(-50%) scaleX(1);   opacity: .85; }
+      50%       { transform: translateX(-50%) scaleX(.78); opacity: .45; }
+    }
+
     /* Quero saber mais button */
     .btn-saiba {
       display: inline-flex;
@@ -2357,9 +2384,9 @@
       </p>
 
       <!-- Phone mockup -->
-      <div style="width:100%;max-width:560px;margin:0 auto 36px;position:relative;">
+      <div class="mockup-wrap">
         <img src="assets/IPHONE.png" alt="Mockup do app de agendamento"
-          style="width:100%;height:auto;display:block;animation:float-phone 4s ease-in-out infinite;filter:drop-shadow(0 32px 28px rgba(60,40,25,.22)) drop-shadow(0 8px 12px rgba(60,40,25,.10));">
+          style="width:100%;height:auto;display:block;animation:float-phone 4s ease-in-out infinite;">
       </div>
 
       <!-- Features -->
