@@ -88,7 +88,7 @@
       margin: 0 auto;
       min-height: 100vh;
       position: relative;
-      padding: 26px 22px 48px;
+      padding: 10px 22px 48px;
     }
 
     /* index strip */
@@ -1642,7 +1642,7 @@
       width: 100%;
       max-width: 420px;
       margin: 0 auto 20px;
-      padding: 22px 28px;
+      padding: 15px 24px;
       background: linear-gradient(145deg, #25D366, #1EBE5A);
       color: #fff;
       border: none;
@@ -2074,6 +2074,30 @@
         aspect-ratio: 640/700;
       }
     }
+    /* Quero saber mais button */
+    .btn-saiba {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin: 24px auto 0;
+      padding: 13px 32px;
+      background: transparent;
+      border: 1.5px solid var(--accent);
+      border-radius: 100px;
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      animation: saiba-beat 2.2s ease-in-out infinite;
+    }
+
+    @keyframes saiba-beat {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(92, 61, 36, .25); }
+      45%       { transform: scale(1.06); box-shadow: 0 0 0 10px rgba(92, 61, 36, 0); }
+    }
   </style>
   <link id="gfont-Inter" rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap">
@@ -2093,7 +2117,6 @@
 
     <!-- eyebrow -->
     <div class="eyebrow" data-cc-id="cc-9">
-      <span class="pip"></span>
       <span data-cc-id="cc-5" style=""><br></span>
     </div>
 
@@ -2213,9 +2236,8 @@
       <span data-cc-id="cc-14" style="">+ 823 profissionais</span>
     </div>
 
-    <div class="cue" data-cc-id="cc-16">
-      <span data-cc-id="cc-15" style=""><br></span>
-      <span class="ln"></span>
+    <div style="display:flex;justify-content:center;">
+      <a href="#section-cta" class="btn-saiba">Quero saber mais</a>
     </div>
 
     <!-- ========== SECTION 2: Problem Deep Dive ========== -->
@@ -2514,7 +2536,7 @@
     </section>
 
     <!-- ========== SECTION 6: CTA Final ========== -->
-    <section class="section-6">
+    <section class="section-6" id="section-cta">
 
       <div class="s6-header">
         <div class="s6-kicker">
@@ -2531,25 +2553,10 @@
         </div>
       </div>
 
-      <!-- Attention card -->
-      <div class="attention-line">
-        <svg class="att-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <circle cx="12" cy="12" r="10"></circle>
-          <line x1="12" y1="8" x2="12" y2="12"></line>
-          <line x1="12" y1="16" x2="12.01" y2="16"></line>
-        </svg>
-        <p><strong>Atenção:</strong> Como criamos apps personalizados um a um para garantir a entrega no mesmo dia,
-          liberamos apenas <strong>5 novas vagas por dia</strong> para novos projetos.</p>
-      </div>
 
       <!-- WhatsApp CTA Button -->
       <a id="botao-zap" href="https://wa.me/5565936180842" class="cta-btn" target="_blank" rel="noopener"
         aria-label="Quero meu app personalizado agora">
-        <svg class="wha-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path
-            d="M12.001 2c-5.523 0-10 4.477-10 10 0 1.77.463 3.433 1.273 4.877L2 22l5.25-1.258A9.953 9.953 0 0 0 12.001 22c5.523 0 10-4.477 10-10s-4.477-10-10-10zm0 18a7.946 7.946 0 0 1-4.075-1.124l-.292-.174-3.117.748.784-2.986-.19-.306A7.96 7.96 0 0 1 4.001 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8zm4.406-5.846c-.242-.121-1.43-.706-1.651-.787-.222-.08-.384-.12-.545.122-.161.242-.624.787-.765.948-.14.162-.281.182-.523.06-.242-.12-1.022-.377-1.946-1.2-.72-.641-1.205-1.432-1.346-1.674-.14-.242-.015-.373.106-.493.109-.109.242-.283.363-.425.12-.14.161-.242.242-.403.08-.162.04-.303-.02-.425-.06-.12-.545-1.314-.747-1.8-.197-.472-.397-.408-.545-.415l-.464-.008c-.161 0-.423.06-.645.303-.222.242-.847.827-.847 2.016s.867 2.338.988 2.5c.12.161 1.706 2.604 4.133 3.651.578.25 1.029.398 1.38.51.58.185 1.108.158 1.525.096.465-.069 1.431-.585 1.633-1.15.202-.564.202-1.048.141-1.15-.06-.1-.222-.16-.464-.282z" />
-        </svg>
         <div class="btn-label">
           <span class="main">QUERO MEU APP PERSONALIZADO AGORA</span>
           <span class="sub">Consultoria gratuita no WhatsApp</span>
@@ -2574,6 +2581,16 @@
 
 
   <script>
+    document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+      anchor.addEventListener('click', function(e) {
+        var target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+
     var botaoWhatsApp = document.getElementById('botao-zap');
     if(botaoWhatsApp) {
       botaoWhatsApp.addEventListener('click', function() {
