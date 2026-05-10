@@ -101,7 +101,7 @@
       text-transform: uppercase;
       color: var(--ink-mute);
       font-weight: 500;
-      margin-bottom: 28px;
+      margin-bottom: 48px;
     }
 
     .index .num {
@@ -1698,14 +1698,13 @@
     }
 
     @keyframes pulse {
-
-      0%,
-      100% {
-        box-shadow: 0 8px 24px -6px rgba(37, 211, 102, .45), 0 4px 12px -2px rgba(37, 211, 102, .25), 0 0 0 0 rgba(37, 211, 102, .3);
+      0%, 100% {
+        box-shadow: 0 8px 24px -6px rgba(37, 211, 102, .5), 0 4px 12px -2px rgba(37, 211, 102, .3), 0 0 0 0 rgba(37, 211, 102, .55);
+        transform: scale(1);
       }
-
       50% {
-        box-shadow: 0 8px 24px -6px rgba(37, 211, 102, .45), 0 4px 12px -2px rgba(37, 211, 102, .25), 0 0 0 14px rgba(37, 211, 102, 0);
+        box-shadow: 0 8px 24px -6px rgba(37, 211, 102, .5), 0 4px 12px -2px rgba(37, 211, 102, .3), 0 0 0 18px rgba(37, 211, 102, 0);
+        transform: scale(1.025);
       }
     }
 
@@ -1720,6 +1719,9 @@
       flex-direction: column;
       gap: 3px;
       text-align: center;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
     }
 
     .btn-label .main {
@@ -2581,12 +2583,33 @@
 
 
   <script>
+    function smoothScrollTo(target, duration) {
+      var start = window.pageYOffset;
+      var end = target.getBoundingClientRect().top + window.pageYOffset;
+      var distance = end - start;
+      var startTime = null;
+      function ease(t, b, c, d) {
+        t /= d / 2;
+        if (t < 1) return c / 2 * t * t * t + b;
+        t -= 2;
+        return c / 2 * (t * t * t + 2) + b;
+      }
+      function step(now) {
+        if (!startTime) startTime = now;
+        var elapsed = now - startTime;
+        window.scrollTo(0, ease(elapsed, start, distance, duration));
+        if (elapsed < duration) requestAnimationFrame(step);
+        else window.scrollTo(0, end);
+      }
+      requestAnimationFrame(step);
+    }
+
     document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
       anchor.addEventListener('click', function(e) {
         var target = document.querySelector(this.getAttribute('href'));
         if (target) {
           e.preventDefault();
-          target.scrollIntoView({ behavior: 'smooth' });
+          smoothScrollTo(target, 1400);
         }
       });
     });
