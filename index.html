@@ -2577,7 +2577,7 @@
     </div>
 
     <div style="display:flex;justify-content:center;">
-      <a href="https://wa.me/5565936180842" id="btn-saiba-wpp" class="btn-saiba" target="_blank" rel="noopener">Quero saber mais</a>
+      <a href="#section-cta" class="btn-saiba">Quero saber mais</a>
     </div>
 
     <!-- ========== SECTION 2: Problem Deep Dive ========== -->
@@ -3030,16 +3030,6 @@
           }
         }, delay);
       }, 90000);
-    })();
-
-    // ========== BTN-SAIBA TRACKING ==========
-    (function() {
-      var btnSaiba = document.getElementById('btn-saiba-wpp');
-      if(btnSaiba) {
-        btnSaiba.addEventListener('click', function() {
-          fbq('track', 'Contact');
-        });
-      }
     })();
 
     // ========== MID-CTA CARD FADE-IN ==========
