@@ -2140,12 +2140,304 @@
       0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(92, 61, 36, .25); }
       45%       { transform: scale(1.06); box-shadow: 0 0 0 10px rgba(92, 61, 36, 0); }
     }
+
+    /* ========== STICKY FLOAT WPP BUTTON ========== */
+    .float-wpp {
+      position: fixed;
+      bottom: 24px;
+      right: 20px;
+      z-index: 9000;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #25D366;
+      color: #fff;
+      border-radius: 100px;
+      padding: 0 20px 0 14px;
+      height: 60px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      box-shadow: 0 8px 28px -6px rgba(37,211,102,.60), 0 3px 8px rgba(0,0,0,.18);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: transform 150ms ease, box-shadow 150ms ease;
+      cursor: pointer;
+      will-change: transform, opacity;
+    }
+    .float-wpp.is-visible {
+      animation: fwpp-enter 500ms cubic-bezier(.2,.7,.2,1) 500ms forwards,
+                 fwpp-pulse  3s   ease-in-out              1100ms infinite;
+    }
+    .float-wpp.is-hidden {
+      opacity: 0 !important;
+      pointer-events: none;
+      transform: translateY(12px) !important;
+      transition: opacity 300ms ease, transform 300ms ease;
+    }
+    .float-wpp:hover  { transform: scale(1.08); box-shadow: 0 12px 32px -6px rgba(37,211,102,.70); }
+    .float-wpp:active { transform: scale(0.95); }
+    .float-wpp .fwpp-ico {
+      width: 36px;
+      height: 36px;
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+    }
+    .float-wpp .fwpp-ico svg { width: 28px; height: 28px; fill: #fff; }
+    @keyframes fwpp-enter {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0);    }
+    }
+    @keyframes fwpp-pulse {
+      0%,100% { box-shadow: 0 8px 28px -6px rgba(37,211,102,.60), 0 0 0 0  rgba(37,211,102,.5); }
+      50%     { box-shadow: 0 8px 28px -6px rgba(37,211,102,.60), 0 0 0 14px rgba(37,211,102,0); }
+    }
+    @media (min-width: 768px) {
+      .float-wpp { height: 72px; font-size: 14px; padding: 0 24px 0 16px; }
+      .float-wpp .fwpp-ico { width: 42px; height: 42px; }
+      .float-wpp .fwpp-ico svg { width: 32px; height: 32px; }
+    }
+
+    /* ========== URGENCY BADGE ========== */
+    .urgency-badge {
+      width: 100%;
+      background: #FF9800;
+      color: #fff;
+      text-align: center;
+      padding: 10px 16px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      line-height: 1.4;
+      border-radius: 10px;
+      margin-bottom: 18px;
+      opacity: 0;
+      transform: translateY(-10px);
+      animation: badge-enter 400ms cubic-bezier(.2,.7,.2,1) 800ms forwards,
+                 badge-pulse  3s   ease-in-out              1300ms infinite;
+      position: relative;
+      overflow: hidden;
+    }
+    @keyframes badge-enter {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes badge-pulse {
+      0%,100% { box-shadow: 0 0 0 0 rgba(255,152,0,.45); }
+      50%     { box-shadow: 0 0 0 8px rgba(255,152,0,0); }
+    }
+    .urgency-badge .badge-dot {
+      display: inline-block;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #fff;
+      margin-right: 5px;
+      vertical-align: middle;
+      animation: dot-blink 1.4s ease-in-out infinite;
+    }
+    @keyframes dot-blink {
+      0%,100% { opacity: 1; }
+      50%     { opacity: 0.35; }
+    }
+
+    /* ========== MID-PAGE CTA CARD ========== */
+    .mid-cta-card {
+      margin-top: 36px;
+      background: linear-gradient(145deg, var(--paper), var(--bg-2));
+      border-radius: 20px;
+      padding: 32px 24px 28px;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,.7);
+      box-shadow: 0 16px 40px -18px rgba(60,40,25,.22);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 600ms ease, transform 600ms ease;
+    }
+    .mid-cta-card.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .mid-cta-card .mcc-title {
+      font-family: 'Fraunces', serif;
+      font-weight: 400;
+      font-size: clamp(20px, 5.5vw, 26px);
+      line-height: 1.15;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+    }
+    .mid-cta-card .mcc-title em {
+      font-style: italic;
+      color: var(--accent);
+    }
+    .mid-cta-card .mcc-sub {
+      font-size: 14px;
+      color: var(--ink-soft);
+      margin-bottom: 24px;
+      line-height: 1.55;
+    }
+    .mid-cta-card .mcc-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 28px;
+      background: linear-gradient(145deg,#25D366,#1EBE5A);
+      color: #fff;
+      border-radius: 100px;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.03em;
+      text-decoration: none;
+      box-shadow: 0 8px 24px -6px rgba(37,211,102,.45);
+      transition: transform 150ms ease, box-shadow 150ms ease;
+    }
+    .mid-cta-card .mcc-btn:hover  { transform: scale(1.05); }
+    .mid-cta-card .mcc-btn:active { transform: scale(0.97); }
+    .mid-cta-card .mcc-btn svg { width: 22px; height: 22px; fill: #fff; flex-shrink: 0; }
+    .mid-cta-card .mcc-micro {
+      margin-top: 14px;
+      font-size: 12px;
+      color: var(--ink-mute);
+      letter-spacing: 0.01em;
+    }
+
+    /* ========== EXIT INTENT POPUP ========== */
+    .exit-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.60);
+      z-index: 9900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 300ms ease;
+    }
+    .exit-overlay.is-open {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .exit-card {
+      background: #fff;
+      border-radius: 22px;
+      padding: 36px 28px 32px;
+      max-width: 380px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 30px 60px -20px rgba(0,0,0,.35);
+      transform: scale(0.8);
+      transition: transform 300ms cubic-bezier(.2,.7,.2,1);
+      position: relative;
+    }
+    .exit-overlay.is-open .exit-card {
+      transform: scale(1);
+    }
+    .exit-card .exit-close {
+      position: absolute;
+      top: 14px;
+      right: 18px;
+      background: none;
+      border: none;
+      font-size: 22px;
+      color: #999;
+      cursor: pointer;
+      line-height: 1;
+      padding: 4px 8px;
+    }
+    .exit-card .exit-emoji  { font-size: 40px; margin-bottom: 12px; display: block; }
+    .exit-card .exit-title  {
+      font-family: 'Fraunces', serif;
+      font-weight: 400;
+      font-size: clamp(20px, 5.5vw, 26px);
+      line-height: 1.15;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+    }
+    .exit-card .exit-title em { font-style: italic; color: var(--accent); }
+    .exit-card .exit-sub   {
+      font-size: 14px;
+      color: var(--ink-soft);
+      line-height: 1.5;
+      margin-bottom: 24px;
+    }
+    .exit-card .exit-btn   {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 16px 28px;
+      background: linear-gradient(145deg,#25D366,#1EBE5A);
+      color: #fff;
+      border-radius: 100px;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.03em;
+      text-decoration: none;
+      box-shadow: 0 8px 24px -6px rgba(37,211,102,.45);
+      transition: transform 150ms ease;
+    }
+    .exit-card .exit-btn:hover  { transform: scale(1.05); }
+    .exit-card .exit-btn:active { transform: scale(0.97); }
+    .exit-card .exit-btn svg { width: 22px; height: 22px; fill: #fff; flex-shrink: 0; }
+    .exit-card .exit-micro { margin-top: 12px; font-size: 12px; color: #aaa; }
+
+    /* ========== SCROLL FADE-IN ========== */
+    .fade-on-scroll {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 550ms ease, transform 550ms ease;
+    }
+    .fade-on-scroll.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
   </style>
   <link id="gfont-Inter" rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap">
 </head>
 
 <body data-cc-id="cc-1" style="cursor: crosshair;">
+
+  <!-- EXIT INTENT POPUP -->
+  <div class="exit-overlay" id="exit-overlay" role="dialog" aria-modal="true" aria-labelledby="exit-title">
+    <div class="exit-card">
+      <button class="exit-close" id="exit-close" aria-label="Fechar">✕</button>
+      <span class="exit-emoji" aria-hidden="true">🚀</span>
+      <p class="exit-title" id="exit-title">Espera! Ainda tem <em>3 vagas</em> disponíveis HOJE</p>
+      <p class="exit-sub">Garanta sua consultoria gratuita antes que acabem. Sem compromisso, 100% de graça.</p>
+      <a href="https://wa.me/5565936180842"
+         id="exit-wpp-btn"
+         class="exit-btn"
+         target="_blank"
+         rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.99 2C6.477 2 2 6.477 2 11.99c0 1.777.468 3.445 1.28 4.893L2 22l5.255-1.248A9.955 9.955 0 0 0 11.99 22C17.523 22 22 17.523 22 11.99 22 6.477 17.523 2 11.99 2zm0 18.18a8.19 8.19 0 0 1-4.18-1.146l-.3-.178-3.118.74.787-2.999-.196-.31A8.18 8.18 0 0 1 3.82 11.99c0-4.509 3.67-8.17 8.17-8.17 4.509 0 8.18 3.661 8.18 8.17 0 4.509-3.671 8.18-8.18 8.18z"/>
+        </svg>
+        Quero minha vaga agora
+      </a>
+      <p class="exit-micro">✅ Gratuito · Sem spam · Sem compromisso</p>
+    </div>
+  </div>
+
+  <!-- STICKY FLOAT WPP -->
+  <a id="float-wpp-btn"
+     class="float-wpp"
+     href="https://wa.me/5565936180842"
+     target="_blank"
+     rel="noopener"
+     aria-label="Consultoria Grátis via WhatsApp">
+    <span class="fwpp-ico">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="currentColor">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.99 2C6.477 2 2 6.477 2 11.99c0 1.777.468 3.445 1.28 4.893L2 22l5.255-1.248A9.955 9.955 0 0 0 11.99 22C17.523 22 22 17.523 22 11.99 22 6.477 17.523 2 11.99 2zm0 18.18a8.19 8.19 0 0 1-4.18-1.146l-.3-.178-3.118.74.787-2.999-.196-.31A8.18 8.18 0 0 1 3.82 11.99c0-4.509 3.67-8.17 8.17-8.17 4.509 0 8.18 3.661 8.18 8.17 0 4.509-3.671 8.18-8.18 8.18z"/>
+      </svg>
+    </span>
+    <span>Consultoria Grátis</span>
+  </a>
 
   <main class="shell" data-cc-id="cc-20">
 
@@ -2155,6 +2447,12 @@
       <span class="rule"></span>
       <span class="right" data-cc-id="cc-8" style=""><span class="star" data-cc-id="cc-16"
           style="">★ORGANIZAÇÃO</span></span>
+    </div>
+
+    <!-- URGENCY BADGE -->
+    <div class="urgency-badge" role="status" aria-live="polite" id="urgency-badge">
+      <span class="badge-dot" aria-hidden="true"></span>
+      APENAS <span id="vaga-count">5</span> VAGAS DISPONÍVEIS HOJE — Próximas <span id="bonus-count">5</span> pessoas ganham análise grátis
     </div>
 
     <!-- eyebrow -->
@@ -2279,7 +2577,7 @@
     </div>
 
     <div style="display:flex;justify-content:center;">
-      <a href="#section-cta" class="btn-saiba">Quero saber mais</a>
+      <a href="https://wa.me/5565936180842" id="btn-saiba-wpp" class="btn-saiba" target="_blank" rel="noopener">Quero saber mais</a>
     </div>
 
     <!-- ========== SECTION 2: Problem Deep Dive ========== -->
@@ -2298,7 +2596,7 @@
       <div class="pain-grid">
 
         <!-- Block 1 -->
-        <div class="pain-block" data-cc-id="cc-19">
+        <div class="pain-block fade-on-scroll" data-cc-id="cc-19">
           <div class="icon-wrap">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
               <circle cx="12" cy="12" r="9"></circle>
@@ -2311,7 +2609,7 @@
         </div>
 
         <!-- Block 2 -->
-        <div class="pain-block" data-cc-id="cc-14">
+        <div class="pain-block fade-on-scroll" data-cc-id="cc-14">
           <div class="icon-wrap">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
               <rect x="3" y="4" width="18" height="18" rx="2"></rect>
@@ -2327,7 +2625,7 @@
         </div>
 
         <!-- Block 3 -->
-        <div class="pain-block">
+        <div class="pain-block fade-on-scroll">
           <div class="icon-wrap">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
               <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
@@ -2339,7 +2637,7 @@
         </div>
 
         <!-- Block 4 -->
-        <div class="pain-block" data-cc-id="cc-23">
+        <div class="pain-block fade-on-scroll" data-cc-id="cc-23">
           <div class="icon-wrap">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
               <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
@@ -2391,7 +2689,7 @@
 
       <!-- Features -->
       <div class="features">
-        <div class="feature" data-cc-id="cc-5">
+        <div class="feature fade-on-scroll" data-cc-id="cc-5">
           <div class="ico">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
               stroke-linejoin="round">
@@ -2403,7 +2701,7 @@
             <span>O sistema envia o lembrete via WhatsApp por você.</span>
           </div>
         </div>
-        <div class="feature">
+        <div class="feature fade-on-scroll">
           <div class="ico">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
               stroke-linejoin="round">
@@ -2418,7 +2716,7 @@
             <span data-cc-id="cc-7" style="">Identifica quem não volta há 30 dias e sugere novo agendamento.</span>
           </div>
         </div>
-        <div class="feature">
+        <div class="feature fade-on-scroll">
           <div class="ico" data-cc-id="cc-15">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
               stroke-linejoin="round">
@@ -2438,22 +2736,22 @@
       </p>
 
       <div class="results-grid">
-        <div class="result-card">
+        <div class="result-card fade-on-scroll">
           <div class="big" data-cc-id="cc-16" style="">70<span class="unit">%</span></div>
           <div class="lbl">Redução de faltas</div>
         </div>
-        <div class="result-card" data-cc-id="cc-17">
+        <div class="result-card fade-on-scroll" data-cc-id="cc-17">
           <div class="big" data-cc-id="cc-14" style="font-family: Fraunces;">+<span
               style="font-size: 16px; font-style: normal; letter-spacing: -0.02em; font-family: Fraunces;"
               data-cc-id="cc-18">RETORNO</span></div>
           <div class="lbl">Clientes voltam</div>
         </div>
-        <div class="result-card" data-cc-id="cc-13">
+        <div class="result-card fade-on-scroll" data-cc-id="cc-13">
           <div class="big" data-cc-id="cc-11" style="font-family: Fraunces;">1ª<span class="unit"
               style="font-family: Fraunces;"> sem</span></div>
           <div class="lbl">Diferença visível</div>
         </div>
-        <div class="result-card" data-cc-id="cc-3">
+        <div class="result-card fade-on-scroll" data-cc-id="cc-3">
           <div class="big" data-cc-id="cc-12" style="">1º<span class="unit"> dia</span></div>
           <div class="lbl" data-cc-id="cc-2" style="">app entregue</div>
         </div>
@@ -2529,11 +2827,11 @@
       <h2 class="s5-title" data-cc-id="cc-1" style="font-family: Georgia; text-align: center;">Quem já usa, <em
           style="font-family: Georgia; text-align: center;">já sente.</em></h2>
 
-      <div class="testimonials">
+      <div class=”testimonials”>
 
-        <div class="testi-card">
-          <div class="testi-quote">“</div>
-          <p class="testi-text">Reduzi minhas faltas em 70% na primeira semana. Minhas clientes amaram a facilidade e eu
+        <div class=”testi-card fade-on-scroll”>
+          <div class=”testi-quote”>”</div>
+          <p class=”testi-text”>Reduzi minhas faltas em 70% na primeira semana. Minhas clientes amaram a facilidade e eu
             finalmente consegui ter <strong>paz no meu final de semana.</strong></p>
           <div class="testi-footer">
             <div class="testi-avatar">M</div>
@@ -2545,9 +2843,9 @@
           </div>
         </div>
 
-        <div class="testi-card">
-          <div class="testi-quote">“</div>
-          <p class="testi-text">Agora eu consigo me fidelizar melhor com os meus clientes. Depois de aplicar eu comecei
+        <div class=”testi-card fade-on-scroll”>
+          <div class=”testi-quote”>”</div>
+          <p class=”testi-text”>Agora eu consigo me fidelizar melhor com os meus clientes. Depois de aplicar eu comecei
             a ver <strong>dinheiro na minha conta.</strong></p>
           <div class="testi-footer">
             <div class="testi-avatar">B</div>
@@ -2562,6 +2860,24 @@
       </div>
 
     </section>
+
+    <!-- MID-PAGE CTA CARD -->
+    <div class="mid-cta-card" id="mid-cta-card">
+      <p class="mcc-title">Quer transformar sua agenda <em>também?</em></p>
+      <p class="mcc-sub">Apenas 15 minutos de consultoria personalizada</p>
+      <a href="https://wa.me/5565936180842"
+         id="mid-cta-btn"
+         class="mcc-btn"
+         target="_blank"
+         rel="noopener"
+         aria-label="Agendar Consultoria via WhatsApp">
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.99 2C6.477 2 2 6.477 2 11.99c0 1.777.468 3.445 1.28 4.893L2 22l5.255-1.248A9.955 9.955 0 0 0 11.99 22C17.523 22 22 17.523 22 11.99 22 6.477 17.523 2 11.99 2zm0 18.18a8.19 8.19 0 0 1-4.18-1.146l-.3-.178-3.118.74.787-2.999-.196-.31A8.18 8.18 0 0 1 3.82 11.99c0-4.509 3.67-8.17 8.17-8.17 4.509 0 8.18 3.661 8.18 8.17 0 4.509-3.671 8.18-8.18 8.18z"/>
+        </svg>
+        Agendar Consultoria Agora
+      </a>
+      <p class="mcc-micro">✅ Consultoria 100% gratuita &nbsp;|&nbsp; ✅ Sem compromisso</p>
+    </div>
 
     <!-- ========== SECTION 6: CTA Final ========== -->
     <section class="section-6" id="section-cta">
@@ -2659,6 +2975,188 @@
         fbq('track', 'Contact');
       });
     }
+
+    // ========== STICKY WPP BUTTON ==========
+    (function() {
+      var floatBtn = document.getElementById('float-wpp-btn');
+      var ctaSection = document.getElementById('section-cta');
+
+      // Fade in after 500ms
+      setTimeout(function() {
+        if(floatBtn) floatBtn.classList.add('is-visible');
+      }, 500);
+
+      // Hide when section-6 enters viewport
+      if(ctaSection && floatBtn) {
+        var observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if(entry.isIntersecting) {
+              floatBtn.classList.remove('is-visible');
+            } else {
+              floatBtn.classList.add('is-visible');
+            }
+          });
+        }, { threshold: 0.15 });
+        observer.observe(ctaSection);
+      }
+
+      // Track fbq on click
+      if(floatBtn) {
+        floatBtn.addEventListener('click', function() {
+          fbq('track', 'Contact');
+        });
+      }
+    })();
+
+    // ========== URGENCY BADGE COUNTER ==========
+    (function() {
+      var vagaCount = document.getElementById('vaga-count');
+      var bonusCount = document.getElementById('bonus-count');
+      if(!vagaCount || !bonusCount) return;
+
+      var currentVagas = 5;
+      var currentBonus = 5;
+
+      setInterval(function() {
+        var delay = Math.floor(Math.random() * 30000) + 60000; // 60-90s
+        setTimeout(function() {
+          if(currentVagas > 2) {
+            currentVagas--;
+            vagaCount.textContent = currentVagas;
+          }
+          if(currentBonus > 0) {
+            currentBonus--;
+            bonusCount.textContent = currentBonus;
+          }
+        }, delay);
+      }, 90000);
+    })();
+
+    // ========== BTN-SAIBA TRACKING ==========
+    (function() {
+      var btnSaiba = document.getElementById('btn-saiba-wpp');
+      if(btnSaiba) {
+        btnSaiba.addEventListener('click', function() {
+          fbq('track', 'Contact');
+        });
+      }
+    })();
+
+    // ========== MID-CTA CARD FADE-IN ==========
+    (function() {
+      var midCtaCard = document.querySelector('.mid-cta-card');
+      if(!midCtaCard) return;
+
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if(entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, { threshold: 0.2 });
+      observer.observe(midCtaCard);
+
+      // Track button click
+      var midCtaBtn = midCtaCard.querySelector('.mcc-btn');
+      if(midCtaBtn) {
+        midCtaBtn.addEventListener('click', function() {
+          fbq('track', 'Contact');
+        });
+      }
+    })();
+
+    // ========== EXIT INTENT POPUP ==========
+    (function() {
+      var exitOverlay = document.getElementById('exit-overlay');
+      var exitClose = document.getElementById('exit-close');
+      var exitBtn = document.querySelector('.exit-btn');
+      if(!exitOverlay) return;
+
+      var exitPopupShown = false;
+      var inactivityTimer = null;
+      var POPUP_STORAGE_KEY = 'exitPopupShown_' + new Date().toDateString();
+
+      // Check localStorage for daily frequency
+      if(localStorage.getItem(POPUP_STORAGE_KEY)) {
+        return; // Already shown today
+      }
+
+      // 30s inactivity trigger
+      function resetInactivityTimer() {
+        if(inactivityTimer) clearTimeout(inactivityTimer);
+        inactivityTimer = setTimeout(function() {
+          if(!exitPopupShown) {
+            showExitPopup();
+          }
+        }, 30000);
+      }
+
+      // Mouse leave trigger
+      document.addEventListener('mouseleave', function(e) {
+        if(e.clientY <= 0 && !exitPopupShown) {
+          showExitPopup();
+        }
+      });
+
+      // Track user activity
+      document.addEventListener('mousemove', resetInactivityTimer);
+      document.addEventListener('touchstart', resetInactivityTimer);
+      document.addEventListener('click', resetInactivityTimer);
+
+      function showExitPopup() {
+        if(exitPopupShown) return;
+        exitPopupShown = true;
+        exitOverlay.classList.add('is-open');
+        localStorage.setItem(POPUP_STORAGE_KEY, 'true');
+      }
+
+      function closeExitPopup() {
+        exitOverlay.classList.remove('is-open');
+      }
+
+      // Close handlers
+      if(exitClose) {
+        exitClose.addEventListener('click', closeExitPopup);
+      }
+
+      // Close on overlay click
+      exitOverlay.addEventListener('click', function(e) {
+        if(e.target === exitOverlay) {
+          closeExitPopup();
+        }
+      });
+
+      // Close on WhatsApp button click
+      if(exitBtn) {
+        exitBtn.addEventListener('click', function() {
+          fbq('track', 'Contact');
+          closeExitPopup();
+        });
+      }
+
+      // Start inactivity timer
+      resetInactivityTimer();
+    })();
+
+    // ========== SCROLL FADE-IN ==========
+    (function() {
+      var fadeElements = document.querySelectorAll('.fade-on-scroll');
+      if(fadeElements.length === 0) return;
+
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if(entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+            observer.unobserve(entry.target); // Only animate once
+          }
+        });
+      }, { threshold: 0.15 });
+
+      fadeElements.forEach(function(el) {
+        observer.observe(el);
+      });
+    })();
   </script>
 </body>
 
