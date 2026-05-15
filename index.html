@@ -3118,18 +3118,25 @@
       var fadeElements = document.querySelectorAll('.fade-on-scroll');
       if(fadeElements.length === 0) return;
 
+      function revealAll() {
+        fadeElements.forEach(function(el) { el.classList.add('in-view'); });
+      }
+
+      if(!('IntersectionObserver' in window)) { revealAll(); return; }
+
       var observer = new IntersectionObserver(function(entries) {
         entries.forEach(function(entry) {
           if(entry.isIntersecting) {
             entry.target.classList.add('in-view');
-            observer.unobserve(entry.target); // Only animate once
+            observer.unobserve(entry.target);
           }
         });
-      }, { threshold: 0.15 });
+      }, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
 
-      fadeElements.forEach(function(el) {
-        observer.observe(el);
-      });
+      fadeElements.forEach(function(el) { observer.observe(el); });
+
+      // Fallback: reveal all after 1.5s in case observer misses elements already in viewport
+      setTimeout(revealAll, 1500);
     })();
   </script>
 </body>
