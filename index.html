@@ -1432,13 +1432,7 @@
     }
 
     .testi-quote {
-      font-family: 'Fraunces', serif;
-      font-size: 56px;
-      line-height: .7;
-      color: var(--gold);
-      opacity: .35;
-      margin-bottom: 12px;
-      font-weight: 400;
+      display: none;
     }
 
     .testi-text {
@@ -1446,7 +1440,21 @@
       line-height: 1.6;
       color: var(--ink-soft);
       text-wrap: pretty;
-      margin-bottom: 20px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+      position: relative;
+    }
+
+    .testi-text::before {
+      content: '"';
+      font-family: 'Fraunces', serif;
+      font-size: 40px;
+      line-height: 1;
+      color: var(--gold);
+      opacity: .35;
+      font-weight: 400;
+      display: block;
+      margin-bottom: 4px;
     }
 
     .testi-text strong {
@@ -1458,8 +1466,7 @@
       display: flex;
       align-items: center;
       gap: 12px;
-      border-top: 1px solid var(--line);
-      padding-top: 16px;
+      margin-bottom: 16px;
     }
 
     .testi-avatar {
